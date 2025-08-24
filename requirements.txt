@@ -1,0 +1,16 @@
+# Core Django dependencies
+Django>=4.2,<5.0
+djangorestframework
+djangorestframework-simplejwt
+
+# Deployment
+gunicorn
+psycopg2-binary        # PostgreSQL adapter (Render uses Postgres)
+whitenoise             # For serving static files
+django-cors-headers    # To allow frontend requests
+dj-database-url        # Parse database URL (Render gives DATABASE_URL)
+
+# Machine Learning dependencies
+numpy
+pandas
+scikit-learn==1.6.1
