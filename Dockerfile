@@ -1,7 +1,7 @@
 # Use official Python image
 FROM python:3.11-slim
 
-# Set environment variables (use modern key=value format)
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
@@ -18,8 +18,12 @@ COPY . /app/
 # Collect static files
 RUN python manage.py collectstatic --noinput || true
 
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Expose port
 EXPOSE 8000
 
-# Run with gunicorn
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Use entrypoint script as default command
+ENTRYPOINT ["/entrypoint.sh"]
