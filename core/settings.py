@@ -25,9 +25,9 @@ import os
 import dj_database_url   # add this import at the top
 from datetime import timedelta
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
+SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ["*"]  # Render gives you a domain, * is fine for now
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS","*").split(",")  # Render gives you a domain, * is fine for now
 
 # Application definition
 
